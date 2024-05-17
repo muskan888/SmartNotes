@@ -1,0 +1,106 @@
+{
+  "members": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith"
+    },
+    {
+      "id": "3",
+      "firstName": "Alice",
+      "lastName": "Johnson"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "member": "1",
+      "text": "John was very engaged during our morning session and completed all his tasks on time."
+    },
+    {
+      "id": "2",
+      "member": "1",
+      "text": "John participated in the group activity and showed improvement in his communication skills."
+    },
+    {
+      "id": "3",
+      "member": "1",
+      "text": "John had a productive day and responded well to instructions."
+    },
+    {
+      "id": "4",
+      "member": "1",
+      "text": "John enjoyed the outdoor activities and interacted well with peers."
+    },
+    {
+      "id": "5",
+      "member": "1",
+      "text": "John was a bit distracted today but managed to complete his tasks with some guidance."
+    },
+    {
+      "id": "6",
+      "member": "2",
+      "text": "Jane was very focused today and completed all her assignments ahead of time."
+    },
+    {
+      "id": "7",
+      "member": "2",
+      "text": "Jane actively participated in the group discussion and shared some insightful thoughts."
+    },
+    {
+      "id": "8",
+      "member": "2",
+      "text": "Jane showed great progress in her reading skills today."
+    },
+    {
+      "id": "9",
+      "member": "2",
+      "text": "Jane was very helpful to her peers during the art project."
+    },
+    {
+      "id": "10",
+      "member": "2",
+      "text": "Jane had a good day and was in a positive mood throughout the sessions."
+    },
+    {
+      "id": "11",
+      "member": "2",
+      "text": "Jane participated in the sports activities and demonstrated good teamwork."
+    },
+    {
+      "id": "12",
+      "member": "3",
+      "text": "Alice was attentive and followed all instructions during the cooking class."
+    },
+    {
+      "id": "13",
+      "member": "3",
+      "text": "Alice engaged well in the music therapy session and showed enthusiasm."
+    },
+    {
+      "id": "14",
+      "member": "3",
+      "text": "Alice was very creative during the art session and completed her project with minimal assistance."
+    },
+    {
+      "id": "15",
+      "member": "3",
+      "text": "Alice participated in the physical exercises and was very energetic."
+    },
+    {
+      "id": "16",
+      "member": "3",
+      "text": "Alice had a productive day and showed improvement in her social skills."
+    },
+    {
+      "id": "17",
+      "member": "3",
+      "text": "Alice enjoyed the gardening activity and was very engaged throughout."
+    }
+  ]
+}
