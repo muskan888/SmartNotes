@@ -10,8 +10,8 @@ The admin tooling features of Kibu are a large part of our product. In this proj
 
 Your solution must include the following:
 
-1. A basic react front end with instructions on how to run it
-2. List all users and their respective notes
+1. Utilize React and TypeScript
+2. A page to list all users and their respective notes
 3. Ability to create a new note for a user
 
 If time allows the following are nice to have features:
@@ -58,10 +58,24 @@ You can learn more about `json-server` [here](https://www.npmjs.com/package/json
 
 ## Getting Started
 
-We recommend by forking this repository and then creating a new React App using [Create React App](https://create-react-app.dev/)
+To complete this project you will not need to make any changes to the `json-server`. Therefore, to get started you should create a new React App. You can learn more from the [React Docs](https://react.dev/learn/start-a-new-react-project)
+
+## Scoring
+
+You will be scored on:
+
+1. Code functionality
+2. Code quality
+3. Thoughtful design and UI
+4. Documentation on any design decisions or libraries used
+
+Bonus points for:
+
+1. Using [NextJs](https://nextjs.org/docs) with server components
+2. Using [React Query](https://tanstack.com/query/latest/docs/framework/react/overview)
 
 ## Submission
 
-You will submit your code via GitHub (or your git application of preference) and email the link to [ben@kibuhq.com](mailto:ben@kibuhq.com).
+You will submit your code via GitHub (or your git repository of preference) and email the link to [ben@kibuhq.com](mailto:ben@kibuhq.com). Your Git repo should include documentation on how to run your application locally.
 
 Feel free to reach out to ask followup questions or clarify any requirements.
