@@ -1,6 +1,6 @@
 # Kibu Technical Project
 
-Welcome to the Kibu Technical Project portion of the interview! Congratulations for making it this far. This project should take between 1-2 hours to complete.
+Welcome to the Kibu Technical Project portion of the interview! Congratulations for making it this far. This project should take between 2-3 hours to complete. Please read this complete file before starting.
 
 ## Overview
 
@@ -10,9 +10,14 @@ The admin tooling features of Kibu are a large part of our product. In this proj
 
 Your solution must include the following:
 
-1. Utilize React and TypeScript
+1. Utilize React, TypeScript, and [NextJs using the App Router](https://nextjs.org/docs/app/getting-started/installation)
 2. A page to list all users and their respective notes
 3. Ability to create a new note for a user
+
+We highly recommend including the following:
+
+1. Using [tRPC](https://trpc.io/docs/quickstart) for client calls. We _highly_ highly recommend using this.
+2. Using [NextJs Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 
 If time allows the following are nice to have features:
 
@@ -58,21 +63,33 @@ You can learn more about `json-server` [here](https://www.npmjs.com/package/json
 
 ## Getting Started
 
-To complete this project you will not need to make any changes to the `json-server`. Therefore, to get started you should create a new React App. You can learn more from the [React Docs](https://react.dev/learn/start-a-new-react-project)
+To complete this project you will not need to make any changes to the `json-server`. Therefore, to get started you should create a new NextJs App. You can learn more from the [NextJs Docs](https://nextjs.org/docs/app/getting-started/installation)
 
 ## Scoring
 
 You will be scored on:
 
-1. Code functionality
-2. Code quality
-3. Thoughtful design and UI
-4. Documentation on any design decisions or libraries used
+1. Using required frameworks (NextJs with the App router, React, and TypeScript)
+2. Code functionality
+3. Code quality
+4. Thoughtful design and UI
+5. Documentation on any design decisions or libraries used
 
 Bonus points for:
 
-1. Using [NextJs](https://nextjs.org/docs) with server components
-2. Using [React Query](https://tanstack.com/query/latest/docs/framework/react/overview)
+1. Using server components in NextJs
+2. Using [tRPC](https://trpc.io/docs/quickstart)
+
+## Help
+
+Please feel free to reach out to Ben for any questions or help while completing this project! The fastest way to get in touch with him is via text message.
+
+This is not an exam, so use any tools at your disposable which you would normally use. At Kibu we use [Cursor](https://www.cursor.com/), check it out if you're not already using it!
+
+Here are some other helpful hints:
+1. If you're newer to NextJs, they migrated from the "pages router" to the "app router". At Kibu we use the app router, so just be sure when checking resources online or the NextJs docs that you select "Using app router" from the dropdown in the top left of the NextJs docs.
+2. tRPC utilizes React Query under the hood. It makes it incredibly easy to build APIs with types included. It also makes the transition to using server components seamless. You can get started [here](https://trpc.io/docs/quickstart)
+3. Follow [this guide](https://nextjs.org/docs/app/getting-started/installation) to learn how to set up a new NextJs app. Both [cursor](https://www.cursor.com/) and Chat GPT are really helpful here too!
 
 ## Submission
 
