@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🔹 Smooth fade-in effect */
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-blue-50 to-purple-100 min-h-screen text-gray-900;
+  }
+}
+
+/* 🔹 Custom card styling */
+@layer components {
+  .card {
+    @apply bg-white/90 shadow-lg backdrop-blur-lg border border-gray-200 rounded-xl p-6;
+  }
+
+  .btn {
+    @apply px-5 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700 shadow-md;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 shadow-md;
+  }
+
+  .btn-outline {
+    @apply border border-gray-400 text-gray-600 hover:bg-gray-200;
+  }
+}
