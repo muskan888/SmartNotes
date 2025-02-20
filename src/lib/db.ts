@@ -7,6 +7,8 @@ export interface Member {
   id: string;
   firstName: string;
   lastName: string;
+  password: string; // Added password field
+  email?: string;
 }
 
 export interface Note {
@@ -27,12 +29,11 @@ export interface AuditLog {
 interface Database {
   members: Member[];
   notes: Note[];
-  audit_log: AuditLog[]; // Added audit_log property
+  audit_log: AuditLog[];
 }
 
 export function getDb(): Database {
   if (!fs.existsSync(dbPath)) {
-    // Create a default db.json if it doesn't exist.
     fs.writeFileSync(
       dbPath,
       JSON.stringify({ members: [], notes: [], audit_log: [] }, null, 2)
@@ -41,9 +42,12 @@ export function getDb(): Database {
   const data = fs.readFileSync(dbPath, 'utf-8');
   const db: Database = JSON.parse(data);
 
-  // Ensure that audit_log exists, in case it is missing.
   db.audit_log = db.audit_log || [];
-  db.members = db.members || [];
+  db.members = db.members.map(member => ({
+    ...member,
+    email: member.email || '',
+    password: member.password || '', // Ensure password field exists
+  }));
   db.notes = db.notes || [];
 
   return db;
