@@ -12,6 +12,7 @@ The project is built using Next.js (App Router), React, TypeScript, Tailwind CSS
 - **Timestamping:** Every note is saved with the exact time it was created.
 
 ### Additional Features
+- **Password protected Notes:** Users can only access their notes if they have the password(see passwords in db.json)
 - **Edit Notes:** Users can update existing notes; the timestamp is refreshed when a note is edited.
 - **Delete Notes:** Users can remove notes from the system.
 - **Audit Logging:** Changes made to notes (updates) are tracked. The audit log entries are stored in the `audit_log` array within the `db.json` file and can be viewed there whenever a note is edited.
