@@ -134,7 +134,7 @@ export default function Home() {
                                 }}
                                 className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition"
                               >
-                                ✅ Save
+                               .Save
                               </button>
 
                               <button
@@ -191,7 +191,7 @@ export default function Home() {
                   })}
                 </div>
 
-                {/* ✅ Restored "Add Note" Section */}
+                {/*.Restored "Add Note" Section */}
                 <div className="mt-6">
                   <textarea
                     value={noteTexts[member.id] || ''}

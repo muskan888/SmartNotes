@@ -59,11 +59,6 @@
       "text": "Jane participated in the sports activities and demonstrated good teamwork."
     },
     {
-      "id": "13",
-      "member": "3",
-      "text": "Alice engaged well in the music therapy session and showed enthusiasm."
-    },
-    {
       "id": "14",
       "member": "3",
       "text": "Alice was very creative during the art session and completed her project with minimal assistance."
@@ -154,6 +149,11 @@
       "id": "2",
       "username": "testuser1",
       "password": "$2b$10$YYuX7fWdjMN7nVhgsoMZNOos/xG7eVB27dvdAgVOL20S1T1ZKK6LO"
+    },
+    {
+      "id": "3",
+      "username": "testuser7838",
+      "password": "$2b$10$Do9CE3p2JHk4TipitD99VebanRJrMdAuVcCaKYeoPoUgmT.idFRfi"
     }
   ],
   "audit_log": [
