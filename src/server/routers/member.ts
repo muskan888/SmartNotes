@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { getDb, saveDb } from '@/lib/db';
 
 export const memberRouter = router({
-  // Returns all members with their notes.
+  // Returns all members with their related notes.
   getAll: publicProcedure.query(() => {
     const db = getDb();
     return db.members.map(member => ({
@@ -12,13 +12,14 @@ export const memberRouter = router({
     }));
   }),
 
-  // Creates a new note (requires memberId and text).
+  // Creates a new note with a timestamp.
   createNote: publicProcedure
     .input(z.object({ memberId: z.string(), text: z.string().min(1) }))
     .mutation(({ input }) => {
       const db = getDb();
+      // Generate a unique note ID (using Date.now() for simplicity)
       const newNote = {
-        id: String(db.notes.length + 1),
+        id: String(Date.now()),
         member: input.memberId,
         text: input.text,
         timestamp: new Date().toISOString(),
@@ -28,28 +29,42 @@ export const memberRouter = router({
       return newNote;
     }),
 
-  // Updates text and timestamp of an existing note (requires noteId and text).
+  // Updates an existing note and logs the change in the audit log.
   updateNote: publicProcedure
-  .input(z.object({
-    noteId: z.string(),
-    memberId: z.string(), // pass the member in too
-    text: z.string().min(1),
-  }))
-  .mutation(({ input }) => {
-    const db = getDb();
-    
-    // search for the note by BOTH noteId and member
-    const noteIndex = db.notes.findIndex(
-      note => note.id === input.noteId && note.member === input.memberId
-    );
-    if (noteIndex === -1) throw new Error("Note not found");
+    .input(z.object({ noteId: z.string(), text: z.string().min(1) }))
+    .mutation(({ input }) => {
+      const db = getDb();
+      const noteIndex = db.notes.findIndex(note => note.id === input.noteId);
+      if (noteIndex === -1) {
+        throw new Error("Note not found");
+      }
 
-    db.notes[noteIndex].text = input.text;
-    db.notes[noteIndex].timestamp = new Date().toISOString();
-    saveDb(db);
-    return db.notes[noteIndex];
-  }),
+      // Store the previous text before updating
+      const previousText = db.notes[noteIndex].text;
+      const newText = input.text;
+      
+      // Update the note's text and refresh the timestamp
+      db.notes[noteIndex].text = newText;
+      db.notes[noteIndex].timestamp = new Date().toISOString();
 
+      // Create an audit log entry for this update
+      const newAuditLog = {
+        id: String(Date.now()), // Unique audit log ID
+        noteId: input.noteId,
+        previousText: previousText,
+        updatedText: newText,
+        timestamp: new Date().toISOString(),
+      };
+
+      // Ensure that the audit_log property exists in the db
+      if (!db.audit_log) {
+        db.audit_log = [];
+      }
+      db.audit_log.push(newAuditLog);
+
+      saveDb(db);
+      return db.notes[noteIndex];
+    }),
 
   // Deletes a note by its ID.
   deleteNote: publicProcedure
@@ -57,7 +72,9 @@ export const memberRouter = router({
     .mutation(({ input }) => {
       const db = getDb();
       const updatedNotes = db.notes.filter(note => note.id !== input.noteId);
-      if (updatedNotes.length === db.notes.length) throw new Error("Note not found");
+      if (updatedNotes.length === db.notes.length) {
+        throw new Error("Note not found");
+      }
       db.notes = updatedNotes;
       saveDb(db);
       return { success: true };
