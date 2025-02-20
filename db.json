@@ -35,7 +35,8 @@
     {
       "id": "6",
       "member": "2",
-      "text": "Jane was very focused today and completed all her assignments ahead of time."
+      "text": "Jane was very focused today and completed all her assignments ahead of time.111",
+      "timestamp": "2025-02-20T08:58:01.277Z"
     },
     {
       "id": "7",
@@ -123,9 +124,38 @@
       "member": "3",
       "text": "hello",
       "timestamp": "2025-02-20T06:36:17.408Z"
+    },
+    {
+      "id": "1740041953628",
+      "member": "1",
+      "text": "hiii",
+      "timestamp": "2025-02-20T08:59:13.628Z"
+    },
+    {
+      "id": "1740041956283",
+      "member": "2",
+      "text": "jj",
+      "timestamp": "2025-02-20T08:59:16.283Z"
+    },
+    {
+      "id": "1740041960210",
+      "member": "2",
+      "text": "hiii 3",
+      "timestamp": "2025-02-20T08:59:46.220Z"
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": "1",
+      "username": "testuser",
+      "password": "$2b$10$uD7YjhmvHIJCCsw3AiLdQegvbd8IgJKfN1GvW2XgenlIoRbfnV56G"
+    },
+    {
+      "id": "2",
+      "username": "testuser1",
+      "password": "$2b$10$YYuX7fWdjMN7nVhgsoMZNOos/xG7eVB27dvdAgVOL20S1T1ZKK6LO"
+    }
+  ],
   "audit_log": [
     {
       "id": "1740033232634",
@@ -154,6 +184,27 @@
       "previousText": "njb j",
       "updatedText": "hello",
       "timestamp": "2025-02-20T06:36:17.408Z"
+    },
+    {
+      "id": "1740041881277",
+      "noteId": "6",
+      "previousText": "Jane was very focused today and completed all her assignments ahead of time.",
+      "updatedText": "Jane was very focused today and completed all her assignments ahead of time.111",
+      "timestamp": "2025-02-20T08:58:01.277Z"
+    },
+    {
+      "id": "1740041962759",
+      "noteId": "1740041960210",
+      "previousText": "hiii",
+      "updatedText": "hiii 2",
+      "timestamp": "2025-02-20T08:59:22.759Z"
+    },
+    {
+      "id": "1740041986220",
+      "noteId": "1740041960210",
+      "previousText": "hiii 2",
+      "updatedText": "hiii 3",
+      "timestamp": "2025-02-20T08:59:46.220Z"
     }
   ]
 }

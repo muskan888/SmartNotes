@@ -2,9 +2,14 @@ import { router, publicProcedure } from '../trpc';
 import { z } from 'zod';
 import { getDb, saveDb } from '@/lib/db';
 
+
+
 export const memberRouter = router({
-  // Returns all members with their related notes.
-  getAll: publicProcedure.query(() => {
+  getAll: publicProcedure.query(({ ctx }) => {
+    if (!ctx.token) {
+      throw new Error("Unauthorized: Missing token");
+    }
+
     const db = getDb();
     return db.members.map(member => ({
       ...member,

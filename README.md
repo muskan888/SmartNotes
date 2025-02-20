@@ -38,12 +38,16 @@ npm install
 ```
 ### 2. Install Dependencies
 ```bash
-json-server --watch db.json
+json-server --watch db.json --port 3001
+
 ```
 Endpoints:
 
-http://localhost:3000/members
-http://localhost:3000/notes
+http://localhost:3001/members
+
+http://localhost:3001/notes
+
+http://localhost:3001/audit_log (Tracks note updates)
 
 ### 3. Run the Development Server
 ```bash
@@ -61,14 +65,16 @@ The application requires authentication to create, edit, or delete notes.
 ```sh
 curl -X POST http://localhost:3000/api/trpc/auth.register \
      -H "Content-Type: application/json" \
-     -d '{"username":"testuser","password":"securepassword"}'
+     --data-raw '{"username":"testuser","password":"securepassword"}'
+
 ```
 ### Login and Get JWT Token
 
 ```sh
 curl -X POST http://localhost:3000/api/trpc/auth.login \
      -H "Content-Type: application/json" \
-     -d '{"username":"testuser","password":"securepassword"}'
+     --data-raw '{"username":"testuser","password":"securepassword"}'
+
 
 
 ```

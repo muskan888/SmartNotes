@@ -10,7 +10,6 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [token, setToken] = useState<string | null>(null);
 
-  // Load token from localStorage
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -18,20 +17,14 @@ export default function Home() {
     }
   }, []);
 
-  // tRPC Context
   const utils = trpc.useContext();
 
-  // Fetch members (only when token exists)
-  const { data: members = [] } = trpc.member.getAll.useQuery(
-    token ? { token } : '',
-    { enabled: !!token }
-  );
+  const { data: members = [] } = trpc.member.getAll.useQuery(undefined, {
+    enabled: !!token,
+  });
 
-  // Mutations
   const createNote = trpc.member.createNote.useMutation({
-    onSuccess: () => {
-      utils.member.getAll.invalidate();
-    },
+    onSuccess: () => utils.member.getAll.invalidate(),
   });
 
   const updateNote = trpc.member.updateNote.useMutation({
@@ -43,19 +36,15 @@ export default function Home() {
   });
 
   const deleteNote = trpc.member.deleteNote.useMutation({
-    onSuccess: () => {
-      utils.member.getAll.invalidate();
-    },
+    onSuccess: () => utils.member.getAll.invalidate(),
   });
 
-  // Logout Handler
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
     window.location.reload();
   };
 
-  // Filter members based on search term
   const filteredMembers = members
     .map(member => ({
       ...member,
@@ -65,7 +54,6 @@ export default function Home() {
     }))
     .filter(member => member.notes.length > 0 || searchTerm === '');
 
-  // Read note aloud
   const readNote = (text: string) => {
     const speech = new SpeechSynthesisUtterance(text);
     speech.rate = 1;
@@ -76,7 +64,6 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-8">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-4xl font-bold mb-8 text-blue-700">📜 Member Notes Kibu</h1>
         {token && (
@@ -89,7 +76,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* Search Bar */}
       <div className="mb-6 flex justify-center">
         <input
           type="text"
@@ -100,7 +86,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Protected Content */}
       {token ? (
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredMembers.length > 0 ? (
@@ -113,7 +98,6 @@ export default function Home() {
                   {member.firstName} {member.lastName}
                 </h2>
 
-                {/* Notes Section */}
                 <div className="mt-4">
                   <h3 className="text-lg font-medium text-gray-600">📝 Notes:</h3>
                   {member.notes.map(note => {
@@ -126,7 +110,6 @@ export default function Home() {
                           editNoteIds[uniqueKey] ? 'bg-yellow-100' : 'bg-gray-100'
                         }`}
                       >
-                        {/* Editing Mode */}
                         {editNoteIds[uniqueKey] ? (
                           <div className="flex-grow">
                             <textarea
@@ -140,20 +123,19 @@ export default function Home() {
                               className="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
                             />
                             <div className="mt-3 flex gap-3">
-                            <button
-  onClick={() => {
-    updateNote.mutate({
-      noteId: note.id,
-      memberId: member.id, // Ensure memberId is passed
-      text: editTexts[`${member.id}-${note.id}`] || note.text, // Fetch correct text
-    });
-    setEditNoteIds({ ...editNoteIds, [`${member.id}-${note.id}`]: null });
-    setEditTexts({ ...editTexts, [`${member.id}-${note.id}`]: '' });
-  }}
-  className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition"
->
-  .Save
-</button>
+                              <button
+                                onClick={() => {
+                                  updateNote.mutate({
+                                    noteId: note.id,
+                                    text: editTexts[uniqueKey] || note.text,
+                                  });
+                                  setEditNoteIds({ ...editNoteIds, [uniqueKey]: null });
+                                  setEditTexts({ ...editTexts, [uniqueKey]: '' });
+                                }}
+                                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition"
+                              >
+                                ✅ Save
+                              </button>
 
                               <button
                                 onClick={() => {
@@ -167,7 +149,6 @@ export default function Home() {
                             </div>
                           </div>
                         ) : (
-                          // Display Mode
                           <div className="flex-grow">
                             <p className="text-gray-800">{note.text}</p>
                             {note.timestamp ? (
@@ -210,7 +191,7 @@ export default function Home() {
                   })}
                 </div>
 
-                {/* Add Note Form */}
+                {/* ✅ Restored "Add Note" Section */}
                 <div className="mt-6">
                   <textarea
                     value={noteTexts[member.id] || ''}
@@ -224,7 +205,6 @@ export default function Home() {
                       setNoteTexts({ ...noteTexts, [member.id]: '' });
                     }}
                     className="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg w-full transition"
-                    disabled={createNote.isLoading || !(noteTexts[member.id] || '').trim()}
                   >
                     ➕ Add Note
                   </button>
